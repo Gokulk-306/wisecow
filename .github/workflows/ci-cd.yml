@@ -42,13 +42,19 @@ jobs:
         with:
           version: v1.27.0
 
-      - name: Configure Kubeconfig
+      - name: Configure Kubeconfig and test connection
         run: |
+          # Save kubeconfig and set environment variable
           echo "${{ secrets.KUBECONFIG_DATA }}" > kubeconfig.yaml
           export KUBECONFIG=$(pwd)/kubeconfig.yaml
 
+          # Test connection
+          kubectl config view
+          kubectl get nodes
+
       - name: Apply Kubernetes manifests
         run: |
+          export KUBECONFIG=$(pwd)/kubeconfig.yaml
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
           kubectl apply -f k8s/ingress.yaml
