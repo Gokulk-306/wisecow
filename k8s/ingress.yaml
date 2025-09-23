@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wisecow-ingress-local
+spec:
+  ingressClassName: nginx   # Needed for NGINX ingress controller
+  rules:
+  - host: wisecow.local     # Local domain
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: wisecow-service
+            port:
+              number: 4499
