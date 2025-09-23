@@ -24,10 +24,10 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t ghcr.io/Gokulk-306/wisecow-app:latest .
+        run: docker build -t ghcr.io/gokulk-306/wisecow-app:latest .
 
       - name: Push Docker image
-        run: docker push ghcr.io/Gokulk-306/wisecow-app:latest
+        run: docker push ghcr.io/gokulk-306/wisecow-app:latest
 
   deploy-to-k8s:
     runs-on: ubuntu-latest
