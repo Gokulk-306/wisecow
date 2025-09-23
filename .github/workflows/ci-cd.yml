@@ -44,11 +44,8 @@ jobs:
 
       - name: Configure Kubeconfig and test connection
         run: |
-          # Save kubeconfig and set environment variable
-          echo "${{ secrets.KUBECONFIG_DATA }}" > kubeconfig.yaml
+          echo "${{ secrets.KUBECONFIG_DATA }}" | base64 --decode > kubeconfig.yaml
           export KUBECONFIG=$(pwd)/kubeconfig.yaml
-
-          # Test connection
           kubectl config view
           kubectl get nodes
 
