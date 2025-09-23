@@ -30,7 +30,7 @@ jobs:
         run: docker push ghcr.io/gokulk-306/wisecow-app:latest
 
   deploy-to-k8s:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build-and-push
 
     steps:
@@ -44,14 +44,16 @@ jobs:
 
       - name: Configure Kubeconfig and test connection
         run: |
-          echo "${{ secrets.KUBECONFIG_DATA }}" | base64 --decode > kubeconfig.yaml
-          export KUBECONFIG=$(pwd)/kubeconfig.yaml
+          # Use the local Minikube kubeconfig
+          export KUBECONFIG=$HOME/.kube/config
+
+          # Test connection
           kubectl config view
           kubectl get nodes
 
       - name: Apply Kubernetes manifests
         run: |
-          export KUBECONFIG=$(pwd)/kubeconfig.yaml
+          export KUBECONFIG=$HOME/.kube/config
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
           kubectl apply -f k8s/ingress.yaml
