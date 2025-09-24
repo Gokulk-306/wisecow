@@ -39,7 +39,7 @@
 
 * Workflow setup to build and push Docker image automatically on repo changes.
 
-## 8. Key Interview Points
+## 8. Works that are done
 
 * Used Deployment, Service, Ingress in Kubernetes.
 * Resolved IngressClass issue (`class <none>` → `nginx`).
