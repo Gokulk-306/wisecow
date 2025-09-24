@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: wisecow
-        image: ghcr.io/gokulk-306/wisecow-app:latest  # ⚠️ lowercase
+        image: ghcr.io/gokulk-306/wisecow-app:latest  
         ports:
         - containerPort: 4499

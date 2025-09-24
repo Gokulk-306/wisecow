@@ -3,9 +3,9 @@ kind: Ingress
 metadata:
   name: wisecow-ingress-local
 spec:
-  ingressClassName: nginx   # Needed for NGINX ingress controller
+  ingressClassName: nginx  
   rules:
-  - host: wisecow.local     # Local domain
+  - host: wisecow.local
     http:
       paths:
       - path: /

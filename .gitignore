@@ -1,0 +1,2 @@
+# Ignore Actions runner binaries and work directories
+k8s/actions-runner/
